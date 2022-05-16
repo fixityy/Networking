@@ -57,7 +57,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="SwiftBook courses"/>
                                 <connections>
-                                    <action selector="postButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1yR-wu-IY8"/>
                                     <segue destination="hn6-LU-VlE" kind="show" id="U34-EX-0G4"/>
                                 </connections>
                             </button>
@@ -119,13 +118,68 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="140" id="c72-7t-Y5g">
-                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="140"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="112" id="c72-7t-Y5g" customClass="TableViewCell" customModule="Get_Post_request" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="112"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c72-7t-Y5g" id="nXP-0Q-Okg">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="140"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="390" height="112"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hYp-pg-7VH">
+                                            <rect key="frame" x="4" y="6" width="140" height="100"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="140" id="Fjo-jU-Hyw"/>
+                                                <constraint firstAttribute="height" constant="100" id="bPb-qI-O2l"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of lessons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOk-vC-HgA">
+                                            <rect key="frame" x="152" y="51" width="206" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="4dN-SE-TAe"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3z-EV-T3i">
+                                            <rect key="frame" x="152" y="80" width="206" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="qak-nv-Qwp"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name of course" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gl-zM-Ptm">
+                                            <rect key="frame" x="152" y="11" width="206" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="0M0-zH-6Dy"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="YOk-vC-HgA" secondAttribute="trailing" constant="32" id="HHf-EH-ySc"/>
+                                        <constraint firstItem="YOk-vC-HgA" firstAttribute="leading" secondItem="hYp-pg-7VH" secondAttribute="trailing" constant="8" symbolic="YES" id="W7U-aH-z4h"/>
+                                        <constraint firstAttribute="trailing" secondItem="P3z-EV-T3i" secondAttribute="trailing" constant="32" id="WGq-C5-WvV"/>
+                                        <constraint firstItem="3gl-zM-Ptm" firstAttribute="top" secondItem="nXP-0Q-Okg" secondAttribute="top" constant="11" id="Ztp-cF-eAV"/>
+                                        <constraint firstItem="YOk-vC-HgA" firstAttribute="top" secondItem="3gl-zM-Ptm" secondAttribute="bottom" constant="19" id="d31-7D-wQu"/>
+                                        <constraint firstItem="hYp-pg-7VH" firstAttribute="centerY" secondItem="nXP-0Q-Okg" secondAttribute="centerY" id="gnE-g8-9Qz"/>
+                                        <constraint firstItem="P3z-EV-T3i" firstAttribute="leading" secondItem="hYp-pg-7VH" secondAttribute="trailing" constant="8" symbolic="YES" id="oFa-02-eLH"/>
+                                        <constraint firstItem="P3z-EV-T3i" firstAttribute="top" secondItem="YOk-vC-HgA" secondAttribute="bottom" constant="8" symbolic="YES" id="qp7-aG-nih"/>
+                                        <constraint firstAttribute="trailing" secondItem="3gl-zM-Ptm" secondAttribute="trailing" constant="32" id="v4n-C5-QFb"/>
+                                        <constraint firstItem="hYp-pg-7VH" firstAttribute="leading" secondItem="nXP-0Q-Okg" secondAttribute="leading" constant="4" id="xBW-cH-KfM"/>
+                                        <constraint firstItem="3gl-zM-Ptm" firstAttribute="leading" secondItem="hYp-pg-7VH" secondAttribute="trailing" constant="8" symbolic="YES" id="xND-yo-dxY"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="courseImage" destination="hYp-pg-7VH" id="bob-sI-Ljx"/>
+                                    <outlet property="courseNameLabel" destination="3gl-zM-Ptm" id="xEi-TW-q5P"/>
+                                    <outlet property="numberOfLessons" destination="YOk-vC-HgA" id="6Ld-g0-7zG"/>
+                                    <outlet property="numberOfTests" destination="P3z-EV-T3i" id="VGO-Ee-26m"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -142,28 +196,47 @@
             </objects>
             <point key="canvasLocation" x="1916.9230769230769" y="526.77725118483409"/>
         </scene>
-        <!--View Controller-->
+        <!--Web View Controller-->
         <scene sceneID="grn-ZZ-fhP">
             <objects>
-                <viewController id="gHk-u7-l9U" sceneMemberID="viewController">
+                <viewController id="gHk-u7-l9U" customClass="WebViewController" customModule="Get_Post_request" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KK3-eE-ThR">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tg0-5B-BIf">
-                                <rect key="frame" x="16" y="88" width="358" height="722"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tg0-5B-BIf">
+                                <rect key="frame" x="0.0" y="88" width="390" height="756"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ue2-eh-j9I">
+                                <rect key="frame" x="0.0" y="86" width="390" height="4"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sw9-ED-EG7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="sw9-ED-EG7" firstAttribute="bottom" secondItem="Tg0-5B-BIf" secondAttribute="bottom" constant="-34" id="3tV-8a-8hg"/>
+                            <constraint firstItem="Tg0-5B-BIf" firstAttribute="leading" secondItem="sw9-ED-EG7" secondAttribute="leading" id="A2q-pq-W1N"/>
+                            <constraint firstItem="Ue2-eh-j9I" firstAttribute="leading" secondItem="sw9-ED-EG7" secondAttribute="leading" id="Baw-oH-aMo"/>
+                            <constraint firstItem="Tg0-5B-BIf" firstAttribute="top" secondItem="sw9-ED-EG7" secondAttribute="top" id="N3J-4n-xOf"/>
+                            <constraint firstItem="sw9-ED-EG7" firstAttribute="bottom" secondItem="Tg0-5B-BIf" secondAttribute="bottom" constant="-34" id="XNW-5C-HP7"/>
+                            <constraint firstItem="sw9-ED-EG7" firstAttribute="bottom" secondItem="Ue2-eh-j9I" secondAttribute="bottom" constant="720" id="er4-pG-TmT"/>
+                            <constraint firstItem="sw9-ED-EG7" firstAttribute="top" secondItem="Ue2-eh-j9I" secondAttribute="top" constant="2" id="gsc-AE-BpZ"/>
+                            <constraint firstItem="sw9-ED-EG7" firstAttribute="trailing" secondItem="Ue2-eh-j9I" secondAttribute="trailing" id="iuD-lf-viv"/>
+                            <constraint firstItem="sw9-ED-EG7" firstAttribute="trailing" secondItem="Tg0-5B-BIf" secondAttribute="trailing" id="lPU-IS-a1s"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="d5b-4h-WQh"/>
+                    <navigationItem key="navigationItem" id="d5b-4h-WQh">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="progressView" destination="Ue2-eh-j9I" id="INl-3E-PeM"/>
+                        <outlet property="webView" destination="Tg0-5B-BIf" id="wFh-EW-dI1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pz7-UC-Tko" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
