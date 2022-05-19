@@ -9,7 +9,6 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    private let networkManager = NetworkManager()
     private var courses = [Course]()
     private var courseName: String?
     private var courseURL: String?
@@ -18,7 +17,7 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
 
         DispatchQueue.global().async {
-            self.networkManager.fetchCourseData { coursesArray in
+            NetworkManager.fetchCourseData { coursesArray in
                 self.courses = coursesArray
                 DispatchQueue.main.async {
                     self.tableView.reloadData()

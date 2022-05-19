@@ -11,7 +11,6 @@ import WebKit
 class WebViewController: UIViewController {
     
     var selectedCourse: String?
-//    var courseURL = "https://swiftbook.ru/content/24-index/"
     var courseURL = ""
 
     
