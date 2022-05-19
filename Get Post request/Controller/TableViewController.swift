@@ -9,18 +9,52 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    let networkManager = NetworkManager()
+    private let networkManager = NetworkManager()
+    private var courses = [Course]()
+    private var courseName: String?
+    private var courseURL: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        networkManager.fetchCourseData()
+        DispatchQueue.global().async {
+            self.networkManager.fetchCourseData { coursesArray in
+                self.courses = coursesArray
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
 
-
+    private func configureCell(cell: TableViewCell, for indexPath: IndexPath) {
+        let course = courses[indexPath.row]
+        
+        cell.courseNameLabel.text = course.name
+        cell.numberOfLessons.text = "Number of lessons: \(course.numberOfLessons)"
+        cell.numberOfTests.text = "Number of tests: \(course.numberOfTests)"
+        
+        DispatchQueue.global().async {
+            guard let imageURL = URL(string: course.imageURL) else { return }
+            guard let data = try? Data(contentsOf: imageURL) else { return }
+            
+            DispatchQueue.main.async {
+                cell.courseImage.image = UIImage(data: data)
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let webVC = segue.destination as! WebViewController
+        webVC.selectedCourse = courseName
+        
+        if let url = courseURL {
+            webVC.courseURL = url
+        }
+    }
+        
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 2
+        return courses.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -30,6 +64,7 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? TableViewCell {
+            configureCell(cell: cell, for: indexPath)
             return cell
         }
 
@@ -37,8 +72,12 @@ class TableViewController: UITableViewController {
     }
  
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ToWebVC", sender: nil)
-        networkManager.fetchCourseData()
+        let course = courses[indexPath.row]
+        
+        courseName = course.name
+        courseURL = course.link
+        
+        performSegue(withIdentifier: "ToWebVC", sender: self)
     }
 
 
