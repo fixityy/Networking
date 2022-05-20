@@ -14,9 +14,9 @@ class MainCollectionViewController: UICollectionViewController {
 //    let actions = ["Download Image", "GET", "Post", "SwiftBook courses", "Upload Image"]
     let actions = Actions.allCases
     let url = "https://jsonplaceholder.typicode.com/posts"
-
+    let uploadImageURL = "https://api.imgur.com/3/image"
+    
     enum Actions: String, CaseIterable {
-        
         case downloadImage = "Download Image"
         case get = "GET"
         case post = "POST"
@@ -47,11 +47,22 @@ class MainCollectionViewController: UICollectionViewController {
         }
         
         switch action {
-        case .downloadImage: performSegue(withIdentifier: "ToImageVC", sender: nil)
-        case .get: NetworkManager.getRequest(url: url)
-        case .post: NetworkManager.postRequest(url: url)
-        case .swiftBookCourses: performSegue(withIdentifier: "ToTableVC", sender: nil)
-        case .uploadImage: print("Print Image")
+        case .downloadImage:
+            performSegue(withIdentifier: "ToImageVC", sender: nil)
+        case .get:
+            NetworkManager.getRequest(url: url)
+        case .post:
+            NetworkManager.postRequest(url: url)
+        case .swiftBookCourses:
+            performSegue(withIdentifier: "ToTableVC", sender: nil)
+        case .uploadImage:
+            NetworkManager.uploadImage(url: uploadImageURL, image: UIImage(named: "TestImage")) {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: nil, message: "Image uploaded", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
         }
     }
 
