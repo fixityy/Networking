@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3090B28A283D1BF50006F7A4 /* AlamofireNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3090B289283D1BF50006F7A4 /* AlamofireNetworkRequest.swift */; };
 		30C58092283785EE003B0EF2 /* ImageProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C58091283785EE003B0EF2 /* ImageProperties.swift */; };
 		30C58094283905E0003B0EF2 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C58093283905E0003B0EF2 /* DataProvider.swift */; };
 		30F893E228327E1200382896 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F893E128327E1200382896 /* AppDelegate.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		021DA3A01861A54C3889D3CD /* Pods-Get Post request.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Get Post request.release.xcconfig"; path = "Target Support Files/Pods-Get Post request/Pods-Get Post request.release.xcconfig"; sourceTree = "<group>"; };
+		3090B289283D1BF50006F7A4 /* AlamofireNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireNetworkRequest.swift; sourceTree = "<group>"; };
 		30C58091283785EE003B0EF2 /* ImageProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProperties.swift; sourceTree = "<group>"; };
 		30C58093283905E0003B0EF2 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		30F893DE28327E1200382896 /* Get Post request.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Get Post request.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,7 +68,6 @@
 				A4A979B5BC273725A286E1DF /* Pods-Get Post request.debug.xcconfig */,
 				021DA3A01861A54C3889D3CD /* Pods-Get Post request.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -131,6 +132,7 @@
 				30F894022832D93600382896 /* Course.swift */,
 				30C58091283785EE003B0EF2 /* ImageProperties.swift */,
 				30C58093283905E0003B0EF2 /* DataProvider.swift */,
+				3090B289283D1BF50006F7A4 /* AlamofireNetworkRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -260,6 +262,7 @@
 			files = (
 				30C58092283785EE003B0EF2 /* ImageProperties.swift in Sources */,
 				30F894032832D93600382896 /* Course.swift in Sources */,
+				3090B28A283D1BF50006F7A4 /* AlamofireNetworkRequest.swift in Sources */,
 				30F894052836E01B00382896 /* MainCollectionViewController.swift in Sources */,
 				30F893F628327E3900382896 /* SecondViewController.swift in Sources */,
 				30F893FA2832A31B00382896 /* WebViewController.swift in Sources */,

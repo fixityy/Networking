@@ -7,16 +7,17 @@
 
 import UIKit
 import NotificationCenter
-
+import Alamofire
 
 private let reuseIdentifier = "Cell"
 
 class MainCollectionViewController: UICollectionViewController {
 
 //    let actions = ["Download Image", "GET", "Post", "SwiftBook courses", "Upload Image"]
-    let actions = Actions.allCases
-    let url = "https://jsonplaceholder.typicode.com/posts"
-    let uploadImageURL = "https://api.imgur.com/3/image"
+    private let actions = Actions.allCases
+    private let url = "https://jsonplaceholder.typicode.com/posts"
+    private let uploadImageURL = "https://api.imgur.com/3/image"
+    private let swiftBookURL = "https://swiftbook.ru//wp-content/uploads/api/api_courses"
     private let dataProvider = DataProvider()
     private var filePath: String?
     private var alert = UIAlertController()
@@ -28,6 +29,9 @@ class MainCollectionViewController: UICollectionViewController {
         case swiftBookCourses = "SwiftBook courses"
         case uploadImage = "Upload Image"
         case downloadFile = "Download File"
+        case swiftBookCoursesAlamofire = "SwiftBook courses Alamofire"
+        case downloadImageAlamofire = "Download Image Alamofire"
+        case dataAlamofire = "Data Alamofire"
     }
     
     override func viewDidLoad() {
@@ -119,6 +123,37 @@ class MainCollectionViewController: UICollectionViewController {
         case .downloadFile:
             showAlert()
             dataProvider.startDownload()
+        case .swiftBookCoursesAlamofire:
+            performSegue(withIdentifier: "ToTableVCAlamofire", sender: nil)
+        case .downloadImageAlamofire:
+            performSegue(withIdentifier: "ToImageVCAlamofire", sender: nil)
+        case .dataAlamofire:
+//            AlamofireNetworkRequest.fetchData(url: swiftBookURL)
+//            AlamofireNetworkRequest.fetchStringData(url: swiftBookURL)
+            AlamofireNetworkRequest.response(url: swiftBookURL)
+        }
+    }
+    
+    //подготавливаем переход на Вью контроллер с курсами
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let coursesVC = segue.destination as? TableViewController
+        
+        switch segue.identifier {
+        case "ToTableVC":
+            coursesVC?.fetchData()
+        case "ToTableVCAlamofire":
+            coursesVC?.fetchDataWithAlamofire()
+        default: break
+        }
+        
+        let imageVC = segue.destination as? SecondViewController
+        
+        switch segue.identifier {
+        case "ToImageVC":
+            imageVC?.fetchImage()
+        case "ToImageVCAlamofire":
+            imageVC?.fetchImageWithAlamofire()
+        default: break
         }
     }
 

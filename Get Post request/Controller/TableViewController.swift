@@ -12,16 +12,28 @@ class TableViewController: UITableViewController {
     private var courses = [Course]()
     private var courseName: String?
     private var courseURL: String?
+    private let url = "https://swiftbook.ru//wp-content/uploads/api/api_courses"
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        DispatchQueue.global().async {
-            NetworkManager.fetchCourseData { coursesArray in
-                self.courses = coursesArray
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+        
+    }
+    
+    func fetchData() {
+        NetworkManager.fetchCourseData(url: url) { coursesArray in
+            self.courses = coursesArray
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func fetchDataWithAlamofire() {
+        AlamofireNetworkRequest.sendRequest(url: url) { coursesArray in
+            self.courses = coursesArray
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
         }
     }

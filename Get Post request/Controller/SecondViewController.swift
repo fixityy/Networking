@@ -19,12 +19,6 @@ class SecondViewController: UIViewController {
         
         imageView.contentMode = .scaleAspectFill
         createActivityIndicator()
-        NetworkManager.fetchImage(url: url) { image in
-            DispatchQueue.main.async {
-                self.activity.stopAnimating()
-                self.imageView.image = image
-            }
-        }
     }
     
     private func createActivityIndicator() {
@@ -33,5 +27,25 @@ class SecondViewController: UIViewController {
         activity.startAnimating()
         view.addSubview(activity)
     }
+    
+    func fetchImage() {
+        NetworkManager.fetchImage(url: url) { image in
+            DispatchQueue.main.async {
+                self.activity.stopAnimating()
+                self.imageView.image = image
+            }
+        }
+    }
+    
+    func fetchImageWithAlamofire() {
+        AlamofireNetworkRequest.fetchImageWithAlamofire(url: url) { image in
+            DispatchQueue.main.async {
+                self.activity.stopAnimating()
+                self.imageView.image = image
+            }
+        }
+    }
+    
+    
 
 }

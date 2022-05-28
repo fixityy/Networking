@@ -31,14 +31,19 @@
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdh-Ki-1JV">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdh-Ki-1JV">
                                             <rect key="frame" x="8" y="8" width="284" height="84"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="hdh-Ki-1JV" firstAttribute="trailing" secondItem="KvJ-XM-Aru" secondAttribute="trailingMargin" id="4RX-oN-TkE"/>
+                                        <constraint firstItem="hdh-Ki-1JV" firstAttribute="bottom" secondItem="KvJ-XM-Aru" secondAttribute="bottomMargin" id="8or-2f-u1q"/>
+                                        <constraint firstItem="hdh-Ki-1JV" firstAttribute="leading" secondItem="KvJ-XM-Aru" secondAttribute="leadingMargin" id="Q5m-fL-Pyy"/>
+                                        <constraint firstItem="hdh-Ki-1JV" firstAttribute="top" secondItem="KvJ-XM-Aru" secondAttribute="topMargin" id="fQw-1t-8Ac"/>
+                                    </constraints>
                                 </collectionViewCellContentView>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <userDefinedRuntimeAttributes>
@@ -60,6 +65,8 @@
                     <connections>
                         <segue destination="O2n-Cg-jOs" kind="show" identifier="ToImageVC" id="lix-Ph-vLa"/>
                         <segue destination="hn6-LU-VlE" kind="show" identifier="ToTableVC" id="Gip-FL-Zui"/>
+                        <segue destination="hn6-LU-VlE" kind="show" identifier="ToTableVCAlamofire" id="Hfz-ez-IHD"/>
+                        <segue destination="O2n-Cg-jOs" kind="show" identifier="ToImageVCAlamofire" id="Eox-3w-MPZ"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVr-sf-gOY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -243,6 +250,10 @@
             <point key="canvasLocation" x="776.92307692307691" y="145.73459715639811"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Hfz-ez-IHD"/>
+        <segue reference="Eox-3w-MPZ"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

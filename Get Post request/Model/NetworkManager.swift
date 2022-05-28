@@ -10,8 +10,8 @@ import UIKit
 
 class NetworkManager {
     
-    static func fetchCourseData(completionHandler: @escaping (([Course])->())) {
-        guard let url = URL(string: "https://swiftbook.ru//wp-content/uploads/api/api_courses") else { return }
+    static func fetchCourseData(url: String, completionHandler: @escaping (([Course])->())) {
+        guard let url = URL(string: url) else { return }
         
         let session = URLSession.shared
         
