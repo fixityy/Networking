@@ -32,6 +32,7 @@ class MainCollectionViewController: UICollectionViewController {
         case swiftBookCoursesAlamofire = "SwiftBook courses Alamofire"
         case downloadImageAlamofire = "Download Image Alamofire"
         case dataAlamofire = "Data Alamofire"
+        case downloadLargeImage = "Large image Alamofire"
     }
     
     override func viewDidLoad() {
@@ -131,6 +132,8 @@ class MainCollectionViewController: UICollectionViewController {
 //            AlamofireNetworkRequest.fetchData(url: swiftBookURL)
 //            AlamofireNetworkRequest.fetchStringData(url: swiftBookURL)
             AlamofireNetworkRequest.response(url: swiftBookURL)
+        case .downloadLargeImage:
+            performSegue(withIdentifier: "ToImageVCAlamofireLarge", sender: nil)
         }
     }
     
@@ -153,6 +156,8 @@ class MainCollectionViewController: UICollectionViewController {
             imageVC?.fetchImage()
         case "ToImageVCAlamofire":
             imageVC?.fetchImageWithAlamofire()
+        case "ToImageVCAlamofireLarge":
+            imageVC?.downloadLargeImageWithAlamofire()
         default: break
         }
     }

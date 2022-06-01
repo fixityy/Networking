@@ -67,6 +67,7 @@
                         <segue destination="hn6-LU-VlE" kind="show" identifier="ToTableVC" id="Gip-FL-Zui"/>
                         <segue destination="hn6-LU-VlE" kind="show" identifier="ToTableVCAlamofire" id="Hfz-ez-IHD"/>
                         <segue destination="O2n-Cg-jOs" kind="show" identifier="ToImageVCAlamofire" id="Eox-3w-MPZ"/>
+                        <segue destination="O2n-Cg-jOs" kind="show" identifier="ToImageVCAlamofireLarge" id="oA6-SF-2al"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVr-sf-gOY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -85,13 +86,33 @@
                                 <rect key="frame" x="0.0" y="88" width="390" height="756"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tCb-4b-OyX">
+                                <rect key="frame" x="87" y="456" width="216" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="u6u-1Q-36O">
+                                <rect key="frame" x="74" y="513" width="243" height="4"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MoB-BE-1L9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MoB-BE-1L9" firstAttribute="trailing" secondItem="u6u-1Q-36O" secondAttribute="trailing" constant="73" id="3sx-ef-86d"/>
+                            <constraint firstItem="tCb-4b-OyX" firstAttribute="width" secondItem="GiC-CB-EVf" secondAttribute="width" multiplier="0.553846" id="95F-Uk-LiY"/>
+                            <constraint firstItem="u6u-1Q-36O" firstAttribute="top" secondItem="tCb-4b-OyX" secondAttribute="bottom" constant="36" id="Auq-nH-tcf"/>
+                            <constraint firstItem="u6u-1Q-36O" firstAttribute="leading" secondItem="tCb-4b-OyX" secondAttribute="leading" constant="-13" id="JY7-F5-v90"/>
+                            <constraint firstItem="tCb-4b-OyX" firstAttribute="height" secondItem="GiC-CB-EVf" secondAttribute="height" multiplier="0.0248815" id="JkY-Qz-xDr"/>
+                            <constraint firstItem="tCb-4b-OyX" firstAttribute="centerY" secondItem="MoB-BE-1L9" secondAttribute="centerY" constant="17.5" id="T16-1h-qsD"/>
+                            <constraint firstItem="tCb-4b-OyX" firstAttribute="centerX" secondItem="MoB-BE-1L9" secondAttribute="centerX" id="T1D-y3-8nC"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fKd-tl-oZl"/>
                     <connections>
                         <outlet property="imageView" destination="PBT-mF-Hcm" id="CcJ-8i-J51"/>
+                        <outlet property="progressLabel" destination="tCb-4b-OyX" id="ikn-xC-eAh"/>
+                        <outlet property="progressView" destination="u6u-1Q-36O" id="tnp-fm-SZU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l9O-Wx-8c3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -252,7 +273,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Hfz-ez-IHD"/>
-        <segue reference="Eox-3w-MPZ"/>
+        <segue reference="oA6-SF-2al"/>
     </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
