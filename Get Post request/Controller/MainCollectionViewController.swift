@@ -33,6 +33,9 @@ class MainCollectionViewController: UICollectionViewController {
         case downloadImageAlamofire = "Download Image Alamofire"
         case dataAlamofire = "Data Alamofire"
         case downloadLargeImage = "Large image Alamofire"
+        case postAlamofire = "POST with Alamofire"
+        case putAlamofire = "PUT with Alamofire"
+        case uploadImageAlamofire = "Upload image Alamofire"
     }
     
     override func viewDidLoad() {
@@ -134,6 +137,12 @@ class MainCollectionViewController: UICollectionViewController {
             AlamofireNetworkRequest.response(url: swiftBookURL)
         case .downloadLargeImage:
             performSegue(withIdentifier: "ToImageVCAlamofireLarge", sender: nil)
+        case .postAlamofire:
+            performSegue(withIdentifier: "PostRequestAlamofire", sender: nil)
+        case .putAlamofire:
+            performSegue(withIdentifier: "PutRequestAlamofire", sender: nil)
+        case .uploadImageAlamofire:
+            AlamofireNetworkRequest.uploadImage(url: uploadImageURL, image: UIImage(named: "TestImage"))
         }
     }
     
@@ -146,6 +155,10 @@ class MainCollectionViewController: UICollectionViewController {
             coursesVC?.fetchData()
         case "ToTableVCAlamofire":
             coursesVC?.fetchDataWithAlamofire()
+        case "PostRequestAlamofire":
+            coursesVC?.postRequestAlamofire()
+        case "PutRequestAlamofire":
+            coursesVC?.putRequestAlamofire()
         default: break
         }
         

@@ -68,6 +68,8 @@
                         <segue destination="hn6-LU-VlE" kind="show" identifier="ToTableVCAlamofire" id="Hfz-ez-IHD"/>
                         <segue destination="O2n-Cg-jOs" kind="show" identifier="ToImageVCAlamofire" id="Eox-3w-MPZ"/>
                         <segue destination="O2n-Cg-jOs" kind="show" identifier="ToImageVCAlamofireLarge" id="oA6-SF-2al"/>
+                        <segue destination="hn6-LU-VlE" kind="show" identifier="PostRequestAlamofire" id="WZG-vE-MX7"/>
+                        <segue destination="hn6-LU-VlE" kind="show" identifier="PutRequestAlamofire" id="kHK-k7-Zdd"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVr-sf-gOY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -272,7 +274,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Hfz-ez-IHD"/>
+        <segue reference="kHK-k7-Zdd"/>
         <segue reference="oA6-SF-2al"/>
     </inferredMetricsTieBreakers>
     <resources>

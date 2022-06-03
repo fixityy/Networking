@@ -120,4 +120,90 @@ class AlamofireNetworkRequest {
             }
         }
     }
+    
+    static func postRequest(url: String, completionHandler: @escaping (_ courses: [Course])->()) {
+        guard let url = URL(string: url) else { return }
+        
+        let userData: [String: Any] = ["name": "Network Request", "link": "https://swiftbook.ru/content/24-index/", "imageUrl": "https://swiftbook.ru/wp-content/uploads/sites/2/2019/04/10-course-copy-8.png", "number_of_lessons": 18, "number_of_tests": 10]
+        
+        request(url, method: .post, parameters: userData).responseJSON { responseJSON in
+            guard let statusCode = responseJSON.response?.statusCode else { return }
+            
+            print(statusCode)
+            
+            switch responseJSON.result {
+            case .success(let value):
+                print(value)
+                
+                guard let jsonObject = value as? [String: Any], let course = Course(json: jsonObject) else {return}
+                
+                var courses = [Course]()
+                courses.append(course)
+                
+                completionHandler(courses)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    static func putRequest(url: String, completionHandler: @escaping (_ courses: [Course])->()) {
+        guard let url = URL(string: url) else { return }
+        
+        let userData: [String: Any] = ["name": "Network Request Alamafire", "link": "https://swiftbook.ru/content/24-index/", "imageUrl": "https://swiftbook.ru/wp-content/uploads/sites/2/2019/04/10-course-copy-8.png", "number_of_lessons": 18, "number_of_tests": 10]
+        
+        request(url, method: .put, parameters: userData).responseJSON { responseJSON in
+            guard let statusCode = responseJSON.response?.statusCode else { return }
+            
+            print(statusCode)
+            
+            switch responseJSON.result {
+            case .success(let value):
+                print(value)
+                
+                guard let jsonObject = value as? [String: Any], let course = Course(json: jsonObject) else {return}
+                
+                var courses = [Course]()
+                courses.append(course)
+                
+                completionHandler(courses)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    static func uploadImage(url: String, image: UIImage?) {
+        
+        guard let url = URL(string: url), let image = image, let data = image.pngData() else { return }
+        
+        let httpHeaders = ["Authorization": "Client-ID 506876ef27d667a"]
+        
+        upload(multipartFormData: { multipartFormData in
+            
+            multipartFormData.append(data, withName: "image")
+
+        }, to: url, method: .post, headers: httpHeaders) { encodingCompletion in
+            
+            switch encodingCompletion {
+            case .success(request: let uploadRequest, streamingFromDisk: let streamingFromDisk, streamFileURL: let streamFileURL):
+                print(uploadRequest)
+                print(streamingFromDisk)
+                print(streamFileURL ?? "streamFileURL is nil")
+                
+                uploadRequest.validate().responseJSON { responseJSON in
+                    switch responseJSON.result {
+                    case .success(let value):
+                        print(value)
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

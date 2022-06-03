@@ -34,9 +34,9 @@ struct Course: Codable {
         self.id = id!
         self.name = name!
         self.link = link!
-        self.imageURL = imageURL!
-        self.numberOfLessons = numberOfLessons!
-        self.numberOfTests = numberOfTests!
+        self.imageURL = imageURL ?? ""
+        self.numberOfLessons = numberOfLessons ?? 0
+        self.numberOfTests = numberOfTests ?? 0
     }
     
     static func getArray(from jsonArray: Any) -> [Course]? {

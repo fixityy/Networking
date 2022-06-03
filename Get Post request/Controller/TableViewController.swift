@@ -13,6 +13,8 @@ class TableViewController: UITableViewController {
     private var courseName: String?
     private var courseURL: String?
     private let url = "https://swiftbook.ru//wp-content/uploads/api/api_courses"
+    private let postRequestURL = "https://jsonplaceholder.typicode.com/posts"
+    private let putRequestURL = "https://jsonplaceholder.typicode.com/posts/1"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +39,35 @@ class TableViewController: UITableViewController {
             }
         }
     }
+    
+    func postRequestAlamofire() {
+        AlamofireNetworkRequest.postRequest(url: postRequestURL) { courses in
+            
+            self.courses = courses
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func putRequestAlamofire() {
+        AlamofireNetworkRequest.putRequest(url: putRequestURL) { courses in
+            self.courses = courses
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            
+        }
+    }
 
     private func configureCell(cell: TableViewCell, for indexPath: IndexPath) {
         let course = courses[indexPath.row]
         
         cell.courseNameLabel.text = course.name
-        cell.numberOfLessons.text = "Number of lessons: \(course.numberOfLessons)"
-        cell.numberOfTests.text = "Number of tests: \(course.numberOfTests)"
+        cell.numberOfLessons.text = "Number of lessons: \(String(describing: course.numberOfLessons))"
+        cell.numberOfTests.text = "Number of tests: \(String(describing: course.numberOfTests))"
         
         DispatchQueue.global().async {
             guard let imageURL = URL(string: course.imageURL) else { return }
