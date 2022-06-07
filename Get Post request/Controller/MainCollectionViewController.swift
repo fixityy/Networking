@@ -8,6 +8,8 @@
 import UIKit
 import NotificationCenter
 import Alamofire
+import FirebaseAuth
+
 
 private let reuseIdentifier = "Cell"
 
@@ -40,6 +42,10 @@ class MainCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Controls"
+        
+        isLoggedIn()
         
         registerForNotification()
         dataProvider.fileLocation = { location in
@@ -194,5 +200,35 @@ extension MainCollectionViewController {
         
         let request = UNNotificationRequest(identifier: "TransferComplete", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+}
+
+
+//MARK: Authorization methods
+
+extension MainCollectionViewController{
+    private func isLoggedIn() {
+        if (Auth.auth().currentUser?.providerData) != nil {
+            print("Already logged in")
+        } else {
+            print("Need to log in")
+            openLoginVC()
+        }
+        
+    }
+    
+    private func openLoginVC(){
+        do {
+            try Auth.auth().signOut()
+            
+            DispatchQueue.main.async {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginViewController
+                self.present(loginVC, animated: true, completion: nil)
+                return
+            }
+        } catch let error {
+            print("Failed to sign out with error: \(error)")
+        }
     }
 }
