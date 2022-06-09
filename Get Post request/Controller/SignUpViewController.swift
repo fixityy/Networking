@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignUpViewController: UIViewController {
     
@@ -62,6 +63,7 @@ class SignUpViewController: UIViewController {
         textField.frame = CGRect(x: 32, y: 0, width: view.frame.width - 64, height: 32)
         textField.center.y = passwordLabel.center.y + 28
         textField.addBottomLine(withColor: .black)
+        textField.isSecureTextEntry = true
         return textField
     }()
     
@@ -80,6 +82,7 @@ class SignUpViewController: UIViewController {
         textField.frame = CGRect(x: 32, y: 0, width: view.frame.width - 64, height: 32)
         textField.center.y = confirmPasswordLabel.center.y + 28
         textField.addBottomLine(withColor: .black)
+        textField.isSecureTextEntry = true
         return textField
     }()
 
@@ -158,10 +161,10 @@ class SignUpViewController: UIViewController {
             let user = userTextField.text,
             let email = emailTextField.text,
             let password = passwordTextField.text,
-            let confirPassword = confirmPasswordTextField.text
+            let confirmPassword = confirmPasswordTextField.text
         else { return }
         
-        let formFilled = !(user.isEmpty) && !(email.isEmpty) && !(password.isEmpty) && !(confirPassword.isEmpty)
+        let formFilled = !(user.isEmpty) && !(email.isEmpty) && !(password.isEmpty) && !(confirmPassword.isEmpty)
         
         setContinueButton(enabled: formFilled)
     }
@@ -174,6 +177,55 @@ class SignUpViewController: UIViewController {
         setContinueButton(enabled: false)
         continueButton.setTitle("", for: .normal)
         activityIndicator.startAnimating()
+        
+        guard
+            let userName = userTextField.text,
+            let email = emailTextField.text,
+            let password = passwordTextField.text,
+            let confirmPassword = confirmPasswordTextField.text
+        else {
+            return
+        }
+        
+        if password != confirmPassword {
+            self.setContinueButton(enabled: true)
+            self.continueButton.setTitle("Continue", for: .normal)
+            self.activityIndicator.stopAnimating()
+            self.continueButton.shake()
+            return
+        }
+        
+        
+        Auth.auth().createUser(withEmail: email, password: password) { user, error in
+            if let error = error {
+                
+                print(error.localizedDescription)
+                self.setContinueButton(enabled: true)
+                self.continueButton.setTitle("Continue", for: .normal)
+                self.activityIndicator.stopAnimating()
+                self.continueButton.shake()
+                
+                return
+            }
+            
+            print("Successfully logged into Firebase with User Email")
+            
+            //Сохраняем имя пользователя в Firebase
+            if let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest() {
+                changeRequest.displayName = userName
+                changeRequest.commitChanges { error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        self.setContinueButton(enabled: true)
+                        self.continueButton.setTitle("Continue", for: .normal)
+                        self.activityIndicator.stopAnimating()
+                    }
+                    
+                    print("User display name changed")
+                    self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     @objc func keyboardWillAppear(notification: NSNotification) {

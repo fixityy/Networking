@@ -64,6 +64,10 @@ class ProfileViewController: UIViewController {
                     GIDSignIn.sharedInstance.signOut()
                     print("User did log out of Google")
                     openLoginVC()
+                case "password":
+                    try! Auth.auth().signOut()
+                    print("User did log out")
+                    openLoginVC()
                 default:
                     print("User is signed in with: \(userInfo.providerID)")
                 }
@@ -99,6 +103,11 @@ extension ProfileViewController {
                     text = "Facebook"
                 case "google.com":
                     text = "Google"
+                case "password":
+                    text = "Email"
+                    if let userName = Auth.auth().currentUser?.displayName {
+                        text = "Email\nHello, \(userName)!"
+                    }
                 default:
                     break
                 }

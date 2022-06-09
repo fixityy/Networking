@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SignInViewController: UIViewController {
     
@@ -44,6 +45,7 @@ class SignInViewController: UIViewController {
         textField.frame = CGRect(x: 32, y: 0, width: view.frame.width - 64, height: 32)
         textField.center.y = passwordLabel.center.y + 28
         textField.addBottomLine(withColor: .black)
+        textField.isSecureTextEntry = true
         return textField
     }()
     
@@ -144,6 +146,27 @@ class SignInViewController: UIViewController {
         setContinueButton(enabled: false)
         continueButton.setTitle("", for: .normal)
         activityIndicator.startAnimating()
+        
+        guard
+            let email = emailTextField.text,
+            let password = passwordTextField.text
+        else { return }
+        
+        Auth.auth().signIn(withEmail: email, password: password) { user, error in
+            if let error = error {
+                
+                print(error.localizedDescription)
+                self.setContinueButton(enabled: true)
+                self.continueButton.setTitle("Continue", for: .normal)
+                self.activityIndicator.stopAnimating()
+                self.continueButton.shake()
+                
+                return
+            }
+            
+            print("Successfully logged into Firebase with User Email")
+            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func keyboardWillAppear(notification: NSNotification) {
