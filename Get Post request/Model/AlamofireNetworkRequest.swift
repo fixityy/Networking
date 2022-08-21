@@ -17,22 +17,7 @@ class AlamofireNetworkRequest {
     static func sendRequest(url: String, completionHandler: @escaping (([Course])->())) {
         
         guard let url = URL(string: url) else { return }
-        
-//        request(url).responseJSON { response in
-//
-//            guard let statusCode = response.response?.statusCode else { return }
-//
-//            print("Status code: \(statusCode)")
-//
-//            if (200..<300).contains(statusCode) {
-//                let value = response.result.value
-//                print("Value: ", value ?? "nil")
-//            } else {
-//                let error = response.result.error
-//                print("Error: ", error ?? "Error")
-//            }
-//        }
-        
+                
         request(url).validate().responseJSON { response in
             switch response.result {
             case .success(let value):

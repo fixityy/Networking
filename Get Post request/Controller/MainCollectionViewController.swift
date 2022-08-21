@@ -15,7 +15,6 @@ private let reuseIdentifier = "Cell"
 
 class MainCollectionViewController: UICollectionViewController {
 
-//    let actions = ["Download Image", "GET", "Post", "SwiftBook courses", "Upload Image"]
     private let actions = Actions.allCases
     private let url = "https://jsonplaceholder.typicode.com/posts"
     private let uploadImageURL = "https://api.imgur.com/3/image"
@@ -138,8 +137,6 @@ class MainCollectionViewController: UICollectionViewController {
         case .downloadImageAlamofire:
             performSegue(withIdentifier: "ToImageVCAlamofire", sender: nil)
         case .dataAlamofire:
-//            AlamofireNetworkRequest.fetchData(url: swiftBookURL)
-//            AlamofireNetworkRequest.fetchStringData(url: swiftBookURL)
             AlamofireNetworkRequest.response(url: swiftBookURL)
         case .downloadLargeImage:
             performSegue(withIdentifier: "ToImageVCAlamofireLarge", sender: nil)
@@ -207,6 +204,7 @@ extension MainCollectionViewController {
 //MARK: Authorization methods
 
 extension MainCollectionViewController{
+    
     private func isLoggedIn() {
         if (Auth.auth().currentUser?.providerData) != nil {
             print("Already logged in")

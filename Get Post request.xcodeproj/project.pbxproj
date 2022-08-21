@@ -160,10 +160,10 @@
 			isa = PBXGroup;
 			children = (
 				30F894002832D92800382896 /* NetworkManager.swift */,
+				3090B289283D1BF50006F7A4 /* AlamofireNetworkRequest.swift */,
 				30F894022832D93600382896 /* Course.swift */,
 				30C58091283785EE003B0EF2 /* ImageProperties.swift */,
 				30C58093283905E0003B0EF2 /* DataProvider.swift */,
-				3090B289283D1BF50006F7A4 /* AlamofireNetworkRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
